@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="630.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="278.0" layoutY="93.0" prefHeight="54.0" prefWidth="213.0" text="Register" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+        <Label layoutX="235.0" layoutY="185.0" prefHeight="30.0" prefWidth="91.0" text="First Name">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="235.0" layoutY="228.0" prefHeight="30.0" prefWidth="91.0" text="Last Name">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Button fx:id="loginButton" layoutX="354.0" layoutY="458.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="Register" />
+        <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="305.0" prefHeight="18.0" prefWidth="224.0" text="Wrong Username or Password" textAlignment="CENTER" textFill="RED" visible="false">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="usernameField" layoutX="373.0" layoutY="187.0" prefHeight="26.0" prefWidth="167.0" promptText="First Name" />
+      <Label layoutX="235.0" layoutY="274.0" prefHeight="30.0" prefWidth="91.0" text="Username">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordField11" layoutX="373.0" layoutY="325.0" prefHeight="26.0" prefWidth="167.0" promptText="Password" />
+      <Label layoutX="232.0" layoutY="323.0" prefHeight="30.0" prefWidth="91.0" text="Password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameField1" layoutX="373.0" layoutY="227.0" prefHeight="26.0" prefWidth="167.0" promptText="Last Name" />
+      <TextField fx:id="usernameField11" layoutX="373.0" layoutY="277.0" prefHeight="26.0" prefWidth="167.0" promptText="Username" />
+    </children>
+</AnchorPane>
