@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.RatingController"
-            prefHeight="600.0" prefWidth="800.0">
-
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RatingController">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="288.0" layoutY="14.0" prefHeight="54.0" prefWidth="213.0" text="Rating" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+      <TableView fx:id="ratingTable" layoutX="60.0" layoutY="100.0" prefHeight="200.0" prefWidth="680.0" />
+      <Label layoutX="60.0" layoutY="340.0" prefHeight="18.0" prefWidth="151.0" text="Current User's Review">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="378.0" prefHeight="18.0" prefWidth="61.0" text="Review" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="reviewArea" layoutX="25.0" layoutY="398.0" prefHeight="190.0" prefWidth="440.0" />
+      <TextField fx:id="rateField" layoutX="562.0" layoutY="480.0" prefHeight="26.0" prefWidth="70.0" />
+      <Label layoutX="526.0" layoutY="484.0" text="Rate" />
+      <Button fx:id="saveButton" layoutX="633.0" layoutY="559.0" mnemonicParsing="false" onAction="#saveButton" prefHeight="26.0" prefWidth="106.0" text="Save" />
+      <Button fx:id="refreshButton" layoutX="683.0" layoutY="314.0" mnemonicParsing="false" text="Refresh" />
+    </children>
 </AnchorPane>

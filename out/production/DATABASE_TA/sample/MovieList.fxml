@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.MovieListController"
-            prefHeight="600.0" prefWidth="800.0">
-
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MovieListController">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="288.0" layoutY="14.0" prefHeight="54.0" prefWidth="213.0" text="Movie List" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+        <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="305.0" prefHeight="18.0" prefWidth="224.0" text="Wrong Username or Password" textAlignment="CENTER" textFill="RED" visible="false">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+      <TableView fx:id="movieTable" layoutX="55.0" layoutY="101.0" onMouseClicked="#getMovie" prefHeight="447.0" prefWidth="680.0" />
+      <Button fx:id="refreshButton" layoutX="679.0" layoutY="560.0" mnemonicParsing="false" text="Refresh" />
+    </children>
 </AnchorPane>

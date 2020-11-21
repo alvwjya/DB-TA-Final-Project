@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="278.0" layoutY="93.0" prefHeight="54.0" prefWidth="213.0" text="Register" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="293.0" layoutY="14.0" prefHeight="54.0" prefWidth="213.0" text="Register" textAlignment="CENTER">
             <font>
                 <Font name="System Bold" size="36.0" />
             </font>
