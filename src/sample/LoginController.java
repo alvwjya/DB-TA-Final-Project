@@ -12,13 +12,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginController extends Connection {
+public class LoginController {
     public Button loginButton;
     public TextField usernameField;
     public TextField passwordField;
 
+    Connection connect = new Connection();
+
 public void loginButton() throws SQLException {
-    PreparedStatement prepStat = getPrepStat("SELECT * FROM users WHERE username = " + usernameField.getText() + " AND pass = " + passwordField.getText() + ";");
+    PreparedStatement prepStat = connect.getPrepStat("SELECT * FROM users WHERE username = " + usernameField.getText() + " AND pass = " + passwordField.getText() + ";");
     ResultSet rs = prepStat.executeQuery();
     if (!rs.next()) {
 
