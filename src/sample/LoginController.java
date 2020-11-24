@@ -9,28 +9,35 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LoginController extends Connection {
     public Button loginButton;
     public TextField usernameField;
     public TextField passwordField;
 
-public void loginButton(){
-    PreparedStatement prepStat = getPrepStat("SELECT * FROM users");
-    if (usernameField.getText().equals(getUsername()))
-    Parent root = null;
-    try{
-        root = FXMLLoader.load(getClass().getResource("MovieList.fxml"));
-    } catch (
-            IOException e) {
-        System.out.println("File Not Found!");
+public void loginButton() throws SQLException {
+    PreparedStatement prepStat = getPrepStat("SELECT * FROM users WHERE username = " + usernameField.getText() + " AND pass = " + passwordField.getText());
+    ResultSet rs = prepStat.executeQuery();
+    if (!rs.isBeforeFirst()) {
+
     }
-    assert root != null;
-    Scene scene = new Scene(root);
-    Stage stage = new Stage();
-    stage.setScene(scene);
-    stage.show();
-    Stage closeWindow = (Stage) loginButton.getScene().getWindow();
-    closeWindow.close();
+    else {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("MovieList.fxml"));
+        } catch (
+                IOException e) {
+            System.out.println("File Not Found!");
+        }
+        assert root != null;
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        Stage closeWindow = (Stage) loginButton.getScene().getWindow();
+        closeWindow.close();
+    }
 }
 }
