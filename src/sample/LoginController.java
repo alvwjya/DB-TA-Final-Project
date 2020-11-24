@@ -8,13 +8,16 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 
-public class LoginController {
+public class LoginController extends Connection {
     public Button loginButton;
     public TextField usernameField;
     public TextField passwordField;
 
 public void loginButton(){
+    PreparedStatement prepStat = getPrepStat("SELECT * FROM users");
+    if (usernameField.getText().equals(getUsername()))
     Parent root = null;
     try{
         root = FXMLLoader.load(getClass().getResource("MovieList.fxml"));
