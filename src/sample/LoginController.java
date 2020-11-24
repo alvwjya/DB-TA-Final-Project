@@ -18,9 +18,9 @@ public class LoginController extends Connection {
     public TextField passwordField;
 
 public void loginButton() throws SQLException {
-    PreparedStatement prepStat = getPrepStat("SELECT * FROM users WHERE username = " + usernameField.getText() + " AND pass = " + passwordField.getText());
+    PreparedStatement prepStat = getPrepStat("SELECT * FROM users WHERE username = " + usernameField.getText() + " AND pass = " + passwordField.getText() + ";");
     ResultSet rs = prepStat.executeQuery();
-    if (!rs.isBeforeFirst()) {
+    if (!rs.next()) {
 
     }
     else {
