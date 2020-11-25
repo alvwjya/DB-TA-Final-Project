@@ -20,7 +20,7 @@ public class LoginController {
     Connection connect = new Connection();
 
 public void loginButton() throws SQLException {
-    PreparedStatement prepStat = connect.getPrepStat("SELECT * FROM users WHERE username = " + usernameField.getText() + " AND pass = " + passwordField.getText() + ";");
+    PreparedStatement prepStat = connect.getPrepStat("SELECT * FROM users WHERE username = '" + usernameField.getText() + "' AND pass = '" + passwordField.getText() + "';");
     ResultSet rs = prepStat.executeQuery();
     if (!rs.next()) {
 
@@ -42,4 +42,6 @@ public void loginButton() throws SQLException {
         closeWindow.close();
     }
 }
+
+
 }

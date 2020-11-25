@@ -13,13 +13,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RegisterController extends Connection{
+    public TextField firstnameField;
+    public TextField lastnameField;
     public TextField usernameField;
-    public TextField usernameField1;
-    public TextField usernameField11;
     public TextField passwordField;
-    public Button loginButton;
+    public Button registerButton;
 
-    public void loginButton() {
+    public void registerButton() {
 
     }
 }

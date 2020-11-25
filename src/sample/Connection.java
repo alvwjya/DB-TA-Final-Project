@@ -3,13 +3,13 @@ package sample;
 import java.sql.*;
 
 public class Connection {
-    private String url = "jdbc:mysql://localhost:3306/FinalProjectTA?useSSL=false";
+    private String url = "jdbc:mysql://localhost:3306/FinalProjectTA?serverTimezone=GMT";
     private String username = "root";
-    //private String password = "davin123";
-    private String password = "";
+    private String password = "davin123";
+    //private String password = "";
 
 
-    public java.sql.Connection connection = null;
+    public java.sql.Connection connection;
 
 
     // Class constructor of Connection class
