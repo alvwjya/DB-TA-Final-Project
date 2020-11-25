@@ -21,25 +21,25 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Button fx:id="loginButton" layoutX="354.0" layoutY="458.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="Register" />
+        <Button fx:id="registerButton" layoutX="354.0" layoutY="458.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="Register" />
         <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="305.0" prefHeight="18.0" prefWidth="224.0" text="Wrong Username or Password" textAlignment="CENTER" textFill="RED" visible="false">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="usernameField" layoutX="373.0" layoutY="187.0" prefHeight="26.0" prefWidth="167.0" promptText="First Name" />
+        <TextField fx:id="firstnameField" layoutX="373.0" layoutY="187.0" prefHeight="26.0" prefWidth="167.0" promptText="First Name" />
       <Label layoutX="235.0" layoutY="274.0" prefHeight="30.0" prefWidth="91.0" text="Username">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <PasswordField fx:id="passwordField11" layoutX="373.0" layoutY="325.0" prefHeight="26.0" prefWidth="167.0" promptText="Password" />
+      <PasswordField fx:id="passwordField" layoutX="373.0" layoutY="325.0" prefHeight="26.0" prefWidth="167.0" promptText="Password" />
       <Label layoutX="232.0" layoutY="323.0" prefHeight="30.0" prefWidth="91.0" text="Password">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameField1" layoutX="373.0" layoutY="227.0" prefHeight="26.0" prefWidth="167.0" promptText="Last Name" />
-      <TextField fx:id="usernameField11" layoutX="373.0" layoutY="277.0" prefHeight="26.0" prefWidth="167.0" promptText="Username" />
+      <TextField fx:id="lastnameField" layoutX="373.0" layoutY="227.0" prefHeight="26.0" prefWidth="167.0" promptText="Last Name" />
+      <TextField fx:id="usernameFIeld" layoutX="373.0" layoutY="277.0" prefHeight="26.0" prefWidth="167.0" promptText="Username" />
     </children>
 </AnchorPane>

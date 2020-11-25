@@ -28,7 +28,7 @@ public class RatingController implements Initializable {
     }
 
     public void saveButton(){
-        PreparedStatement prepStat = connect.getPrepStat("INSERT INTO ratings (movie_title, username, description, rate) VALUES (");
+        //PreparedStatement prepStat = connect.getPrepStat("INSERT INTO ratings (movie_title, username, description, rate) VALUES ('" + + "', '" + );
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Info");
         alert.setContentText("Save Successful!");
