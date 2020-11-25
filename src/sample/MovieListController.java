@@ -16,11 +16,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MovieListController implements Initializable {
     public Button refreshButton;
-
+    Connection connect = new Connection();
     ObservableList<ModelTableMovie> oblist = FXCollections.observableArrayList();
 
     @FXML
@@ -47,11 +50,23 @@ public class MovieListController implements Initializable {
         closeWindow.close();
     }
 
+    public void showTable() {
+        try {
+            PreparedStatement prepStat = connect.getPrepStat("SELECT * FROM movies;");
+            ResultSet rs = prepStat.executeQuery();
 
+            while (rs.next()) {
+                oblist.add(new ModelTableMovie(rs.getString("title"), rs.getInt("movie_rating")));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
 
     public void initialize(URL location, ResourceBundle resource) {
-        oblist.add(new ModelTableMovie("Joko",3));
+        showTable();
+        //oblist.add(new ModelTableMovie("Joko",3));
 
         TableColumn movCol = new TableColumn("Movie");
         movCol.setMinWidth(550);
