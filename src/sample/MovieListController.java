@@ -33,6 +33,10 @@ public class MovieListController implements Initializable {
 
     }
 
+    public void getVal() {
+
+    }
+
     public void getMovie(){
         //ModelTableMovie movie = movieTable.getSelectionModel().getSelectedItem();
         Parent root = null;

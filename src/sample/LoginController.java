@@ -18,6 +18,7 @@ public class LoginController {
     public TextField passwordField;
 
     Connection connect = new Connection();
+    String username;
 
 public void loginButton() throws SQLException {
     PreparedStatement prepStat = connect.getPrepStat("SELECT * FROM users WHERE username = '" + usernameField.getText() + "' AND pass = '" + passwordField.getText() + "';");
@@ -26,6 +27,7 @@ public void loginButton() throws SQLException {
 
     }
     else {
+        String username = usernameField.getText();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("MovieList.fxml"));

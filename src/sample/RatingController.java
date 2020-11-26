@@ -11,7 +11,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
-public class RatingController implements Initializable {
+public class RatingController extends LoginController implements Initializable {
     public Button refreshButton, saveButton;
     public TextArea reviewArea;
     public TextField rateField;
@@ -28,7 +28,7 @@ public class RatingController implements Initializable {
     }
 
     public void saveButton(){
-        //PreparedStatement prepStat = connect.getPrepStat("INSERT INTO ratings (movie_title, username, description, rate) VALUES ('" + + "', '" + );
+        //PreparedStatement prepStat = connect.getPrepStat("INSERT INTO ratings (movie_title, username, description, rate) VALUES ('" + + "', '" + username + "', '" + reviewArea.getText() + "', '" + rateField.getText() + "');");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Info");
         alert.setContentText("Save Successful!");
