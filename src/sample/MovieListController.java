@@ -25,6 +25,7 @@ public class MovieListController implements Initializable {
     public Button refreshButton;
     Connection connect = new Connection();
     ObservableList<ModelTableMovie> oblist = FXCollections.observableArrayList();
+    public String movietitle;
 
     @FXML
     private TableView<ModelTableMovie> movieTable;
@@ -34,11 +35,13 @@ public class MovieListController implements Initializable {
     }
 
     public void getVal() {
-
+        ModelTableMovie movie = movieTable.getSelectionModel().getSelectedItem();
+        movietitle = movie.getMovie();
     }
 
     public void getMovie(){
         //ModelTableMovie movie = movieTable.getSelectionModel().getSelectedItem();
+        getVal();
         Parent root = null;
         try{
             root = FXMLLoader.load(getClass().getResource("Rating.fxml"));
