@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,23 +14,26 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-public class MovieListController implements Initializable {
+public class MovieListController{
     public Button refreshButton;
     Connection connect = new Connection();
     ObservableList<ModelTableMovie> oblist = FXCollections.observableArrayList();
     public String movietitle;
+    public String username;
 
     @FXML
     private TableView<ModelTableMovie> movieTable;
 
     public void refreshButton(){
 
+    }
+
+    public void setUsername(String username){
+        this.username = username;
     }
 
     public void getVal() {
@@ -42,19 +44,25 @@ public class MovieListController implements Initializable {
     public void getMovie(){
         //ModelTableMovie movie = movieTable.getSelectionModel().getSelectedItem();
         getVal();
-        Parent root = null;
+        //Parent root = null;
         try{
-            root = FXMLLoader.load(getClass().getResource("Rating.fxml"));
+
+
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Rating.fxml"));
+            Parent root = loader.load();
+            RatingController rCon = loader.getController();
+            rCon.setUsername(username);
+            rCon.setMovieTitle(movietitle);
+            rCon.loadFirst();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            Stage closeWindow = (Stage) movieTable.getScene().getWindow();
+            closeWindow.close();
         } catch (IOException e) {
             System.out.println("File Not Found!");
         }
-        assert root != null;
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        Stage closeWindow = (Stage) movieTable.getScene().getWindow();
-        closeWindow.close();
     }
 
     public void showTable() {
@@ -71,9 +79,8 @@ public class MovieListController implements Initializable {
     }
 
 
-    public void initialize(URL location, ResourceBundle resource) {
+    public void loadFirst() {
         showTable();
-        //oblist.add(new ModelTableMovie("Joko",3));
 
         TableColumn movCol = new TableColumn("Movie");
         movCol.setMinWidth(550);
