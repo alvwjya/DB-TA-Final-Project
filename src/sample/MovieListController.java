@@ -18,21 +18,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MovieListController{
+public class MovieListController {
     public Button refreshButton;
-    Connection connect = new Connection();
-    ObservableList<ModelTableMovie> oblist = FXCollections.observableArrayList();
     public String movietitle;
     public String username;
-
+    Connection connect = new Connection();
+    ObservableList<ModelTableMovie> oblist = FXCollections.observableArrayList();
     @FXML
     private TableView<ModelTableMovie> movieTable;
 
-    public void refreshButton(){
+    public void refreshButton() {
 
     }
 
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -41,12 +40,11 @@ public class MovieListController{
         movietitle = movie.getMovie();
     }
 
-    public void getMovie(){
+    public void getMovie() {
         //ModelTableMovie movie = movieTable.getSelectionModel().getSelectedItem();
         getVal();
         //Parent root = null;
-        try{
-
+        try {
 
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Rating.fxml"));
@@ -73,7 +71,7 @@ public class MovieListController{
             while (rs.next()) {
                 oblist.add(new ModelTableMovie(rs.getString("title"), rs.getInt("movie_rating")));
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

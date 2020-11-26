@@ -1,15 +1,15 @@
 package sample;
 
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Connection {
+    public java.sql.Connection connection;
     private String url = "jdbc:mysql://localhost:3306/FinalProjectTA?serverTimezone=GMT";
     private String username = "root";
-    //private String password = "davin123";
-    private String password = "";
-
-
-    public java.sql.Connection connection;
+    private String password = "davin123";
+    //private String password = "";
 
 
     // Class constructor of Connection class
