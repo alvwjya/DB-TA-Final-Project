@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="293.0" layoutY="14.0" prefHeight="54.0" prefWidth="213.0" text="Register" textAlignment="CENTER">
             <font>
@@ -21,7 +21,7 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Button fx:id="registerButton" layoutX="354.0" layoutY="458.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="Register" />
+        <Button fx:id="registerButton" layoutX="354.0" layoutY="458.0" mnemonicParsing="false" onAction="#registerButton" prefHeight="26.0" prefWidth="91.0" text="Register" />
         <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="305.0" prefHeight="18.0" prefWidth="224.0" text="Wrong Username or Password" textAlignment="CENTER" textFill="RED" visible="false">
             <font>
                 <Font size="14.0" />
