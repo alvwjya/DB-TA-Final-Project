@@ -69,7 +69,7 @@ public class MovieListController {
             ResultSet rs = prepStat.executeQuery();
 
             while (rs.next()) {
-                oblist.add(new ModelTableMovie(rs.getString("title"), rs.getInt("movie_rating")));
+                oblist.add(new ModelTableMovie(rs.getString("title"), rs.getFloat("movie_rating")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
