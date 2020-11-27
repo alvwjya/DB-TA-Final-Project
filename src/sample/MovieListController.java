@@ -88,7 +88,7 @@ public class MovieListController {
         TableColumn ratCol = new TableColumn("Rating");
         ratCol.setMinWidth(100);
         ratCol.setCellValueFactory(
-                new PropertyValueFactory<ModelTableMovie, Integer>("rating"));
+                new PropertyValueFactory<ModelTableMovie, Float>("rating"));
         movieTable.setItems(oblist);
         movieTable.getColumns().addAll(movCol, ratCol);
 

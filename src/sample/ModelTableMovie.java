@@ -2,9 +2,9 @@ package sample;
 
 public class ModelTableMovie {
 private String movie;
-private int rating;
+private float rating;
 
-    public ModelTableMovie(String movie, int rating) {
+    public ModelTableMovie(String movie, float rating) {
         this.movie = movie;
         this.rating = rating;
     }
@@ -17,7 +17,7 @@ private int rating;
         this.movie = movie;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
