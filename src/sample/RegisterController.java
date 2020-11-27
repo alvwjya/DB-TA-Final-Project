@@ -33,24 +33,20 @@ public class RegisterController extends Connection{
             alert.setTitle("Info");
             alert.setContentText("New User Register Successful!");
             alert.setHeaderText("REGISTERED");
-            alert.show();
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                Parent root = null;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                assert root != null;
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.show();
-                Stage closeWindow = (Stage) registerButton.getScene().getWindow();
-                closeWindow.close();
+            alert.showAndWait();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            assert root != null;
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage closeWindow = (Stage) registerButton.getScene().getWindow();
+            closeWindow.close();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Info");
