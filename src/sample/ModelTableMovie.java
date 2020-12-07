@@ -1,20 +1,22 @@
 package sample;
 
 public class ModelTableMovie {
-private String movie;
-private float rating;
+    private int movieId;
+    private String movieName;
+    private float rating;
 
-    public ModelTableMovie(String movie, float rating) {
-        this.movie = movie;
+    public ModelTableMovie(int movieId, String movieName, float rating) {
+        this.movieId = movieId;
+        this.movieName = movieName;
         this.rating = rating;
     }
 
     public String getMovie() {
-        return movie;
+        return movieName;
     }
 
-    public void setMovie(String movie) {
-        this.movie = movie;
+    public void setMovie(String movieName) {
+        this.movieName = movieName;
     }
 
     public float getRating() {
@@ -23,5 +25,13 @@ private float rating;
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 }

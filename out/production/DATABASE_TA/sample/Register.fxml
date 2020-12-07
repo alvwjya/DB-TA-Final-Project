@@ -41,5 +41,6 @@
       </Label>
       <TextField fx:id="lastnameField" layoutX="373.0" layoutY="227.0" prefHeight="26.0" prefWidth="167.0" promptText="Last Name" />
       <TextField fx:id="usernameField" layoutX="373.0" layoutY="277.0" prefHeight="26.0" prefWidth="167.0" promptText="Username" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
     </children>
 </AnchorPane>

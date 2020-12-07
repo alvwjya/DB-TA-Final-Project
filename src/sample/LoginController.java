@@ -24,7 +24,7 @@ public class LoginController {
 
 
     public void loginButton() throws SQLException {
-        PreparedStatement prepStat = connect.getPrepStat("SELECT * FROM users WHERE username = '" + usernameField.getText() + "' AND pass = '" + passwordField.getText() + "';");
+        PreparedStatement prepStat = connect.getPrepStat("SELECT * FROM users WHERE username = '" + usernameField.getText() + "' AND password = '" + passwordField.getText() + "';");
         ResultSet rs = prepStat.executeQuery();
         if (!rs.next()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

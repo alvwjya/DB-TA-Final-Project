@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,16 +20,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MovieListController {
-    public Button refreshButton;
-    public String movietitle;
+    public Button logOutButton;
+    public int movieId;
     public String username;
+    public Label greetingsLabel;
     Connection connect = new Connection();
     ObservableList<ModelTableMovie> oblist = FXCollections.observableArrayList();
     @FXML
     private TableView<ModelTableMovie> movieTable;
 
-    public void refreshButton() {
-
+    public void logOutButton() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        username = "";
+        movieId = 0;
+        assert root != null;
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        Stage closeWindow = (Stage) logOutButton.getScene().getWindow();
+        closeWindow.close();
     }
 
     public void setUsername(String username) {
@@ -37,21 +53,19 @@ public class MovieListController {
 
     public void getVal() {
         ModelTableMovie movie = movieTable.getSelectionModel().getSelectedItem();
-        movietitle = movie.getMovie();
+        movieId = movie.getMovieId();
     }
 
     public void getMovie() {
-        //ModelTableMovie movie = movieTable.getSelectionModel().getSelectedItem();
         getVal();
-        //Parent root = null;
         try {
-
+            System.out.println("THIS IS BEFORE: " + movieId);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Rating.fxml"));
             Parent root = loader.load();
             RatingController rCon = loader.getController();
             rCon.setUsername(username);
-            rCon.setMovieTitle(movietitle);
+            rCon.setMovieId(movieId);
             rCon.loadFirst();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -69,7 +83,7 @@ public class MovieListController {
             ResultSet rs = prepStat.executeQuery();
 
             while (rs.next()) {
-                oblist.add(new ModelTableMovie(rs.getString("title"), rs.getFloat("movie_rating")));
+                oblist.add(new ModelTableMovie(rs.getInt("movieId"), rs.getString("moviename"), rs.getFloat("movieRating")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,6 +92,10 @@ public class MovieListController {
 
 
     public void loadFirst() {
+        movieTable.getItems().clear();
+        movieTable.getColumns().clear();
+
+        greetingsLabel.setText("Welcome " + username + "!");
         showTable();
 
         TableColumn movCol = new TableColumn("Movie");
