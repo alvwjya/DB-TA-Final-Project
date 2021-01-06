@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -18,64 +15,76 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class MovieListController {
     public Button logOutButton;
     public int movieId;
     public String username;
     public Label greetingsLabel;
+
     Connection connect = new Connection();
     ObservableList<ModelTableMovie> oblist = FXCollections.observableArrayList();
+
     @FXML
     private TableView<ModelTableMovie> movieTable;
 
+
     public void logOutButton() {
+        username = "";
+        movieId = 0;
+
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        username = "";
-        movieId = 0;
         assert root != null;
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+
         Stage closeWindow = (Stage) logOutButton.getScene().getWindow();
         closeWindow.close();
     }
 
+
     public void setUsername(String username) {
         this.username = username;
     }
+
 
     public void getVal() {
         ModelTableMovie movie = movieTable.getSelectionModel().getSelectedItem();
         movieId = movie.getMovieId();
     }
 
+
     public void getMovie() {
         getVal();
-        try {
-            System.out.println("THIS IS BEFORE: " + movieId);
 
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Rating.fxml"));
             Parent root = loader.load();
+
             RatingController rCon = loader.getController();
             rCon.setUsername(username);
             rCon.setMovieId(movieId);
             rCon.loadFirst();
+
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
+
             Stage closeWindow = (Stage) movieTable.getScene().getWindow();
             closeWindow.close();
         } catch (IOException e) {
             System.out.println("File Not Found!");
         }
     }
+
 
     public void showTable() {
         try {
@@ -91,12 +100,36 @@ public class MovieListController {
     }
 
 
+    public void addButton() {
+        TextInputDialog td = new TextInputDialog();
+        td.setHeaderText("Enter New Movie Title");
+        Optional<String> result = td.showAndWait();
+        if (!result.isEmpty()) {
+            try {
+                if (!td.getEditor().getText().isEmpty()) {
+                    PreparedStatement prepStat = connect.getPrepStat("INSERT INTO movies (moviename) VALUES ('" + td.getEditor().getText() + "');");
+                    prepStat.executeUpdate();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+    public void refreshButton() {
+        movieTable.getItems().clear();
+        showTable();
+    }
+
+
     public void loadFirst() {
         movieTable.getItems().clear();
-        movieTable.getColumns().clear();
+        showTable();
 
         greetingsLabel.setText("Welcome " + username + "!");
-        showTable();
+
 
         TableColumn movCol = new TableColumn("Movie");
         movCol.setMinWidth(550);
@@ -109,7 +142,5 @@ public class MovieListController {
                 new PropertyValueFactory<ModelTableMovie, Float>("rating"));
         movieTable.setItems(oblist);
         movieTable.getColumns().addAll(movCol, ratCol);
-
     }
-
 }

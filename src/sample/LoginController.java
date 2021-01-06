@@ -26,6 +26,7 @@ public class LoginController {
     public void loginButton() throws SQLException {
         PreparedStatement prepStat = connect.getPrepStat("SELECT * FROM users WHERE username = '" + usernameField.getText() + "' AND password = '" + passwordField.getText() + "';");
         ResultSet rs = prepStat.executeQuery();
+
         if (!rs.next()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Something Wrong!");
@@ -45,6 +46,7 @@ public class LoginController {
                 Stage stage = new Stage();
                 stage.setScene(scene);
                 stage.show();
+
                 Stage closeWindow = (Stage) loginButton.getScene().getWindow();
                 closeWindow.close();
             }
@@ -53,12 +55,15 @@ public class LoginController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("MovieList.fxml"));
                 Parent root = loader.load();
+
                 MovieListController mCon = loader.getController();
                 mCon.setUsername(usernameField.getText());
                 mCon.loadFirst();
+
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
+
                 Stage closeWindow = (Stage) loginButton.getScene().getWindow();
                 closeWindow.close();
             } catch (
@@ -67,6 +72,4 @@ public class LoginController {
             }
         }
     }
-
-
 }

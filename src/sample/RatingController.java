@@ -33,34 +33,45 @@ public class RatingController {
         this.movieId = movieId;
     }
 
+
     public void setUsername(String username) {
         this.username = username;
     }
+
 
     public void refreshButton() {
         System.out.println(movieId);
         System.out.println(username);
     }
 
-    @FXML
+
     public void saveButton() {
 
-        if ((reviewArea.getText().isEmpty()) || rateField.getText().isEmpty() || (Integer.parseInt(rateField.getText()) <= 0) || (Integer.parseInt(rateField.getText()) > 5)) {
+        if ((reviewArea.getText().isEmpty()) || rateField.getText().isEmpty() ||
+                (Integer.parseInt(rateField.getText()) <= 0) ||
+                (Integer.parseInt(rateField.getText()) > 5)) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Something Wrong!");
             alert.setHeaderText("Check your input");
             alert.setContentText("Make sure you fill all field with correct value");
+
             alert.show();
         } else {
             try {
-                PreparedStatement prepStatCheck = connect.getPrepStat("SELECT * FROM ratings WHERE username = '" + username + "' AND movieId = " + movieId + ";");
+                PreparedStatement prepStatCheck = connect.getPrepStat("SELECT * FROM ratings WHERE username = '" + username + "' " +
+                        "AND movieId = " + movieId + ";");
                 ResultSet rsc = prepStatCheck.executeQuery();
+
                 if (rsc.next()) {
-                    PreparedStatement prepStatUpdate = connect.getPrepStat("UPDATE ratings SET description = '" + reviewArea.getText() + "', rate = " + Integer.parseInt(rateField.getText()) + " WHERE movieId = " + movieId + " AND username ='" + username + "';");
+                    PreparedStatement prepStatUpdate = connect.getPrepStat("UPDATE ratings SET description = '" + reviewArea.getText() +
+                            "', rate = " + Integer.parseInt(rateField.getText()) + " WHERE movieId = " + movieId + " AND username ='" + username + "';");
                     prepStatUpdate.executeUpdate();
+
                 } else {
-                    PreparedStatement prepStat = connect.getPrepStat("INSERT INTO ratings (movieId, username, description, rate) VALUES ('" + movieId + "', '" + username + "', '" + reviewArea.getText() + "', '" + rateField.getText() + "');");
+                    PreparedStatement prepStat = connect.getPrepStat("INSERT INTO ratings (movieId, username, description, rate) " +
+                            "VALUES ('" + movieId + "', '" + username + "', '" + reviewArea.getText() + "', '" + rateField.getText() + "');");
                     prepStat.executeUpdate();
+
                     ModelTableRating modelTableRating = new ModelTableRating(username, reviewArea.getText(), Integer.parseInt(rateField.getText()));
                     oblist.add(modelTableRating);
                 }
@@ -68,17 +79,20 @@ public class RatingController {
                 alert.setTitle("Info");
                 alert.setContentText("Save Successful!");
                 alert.setHeaderText("SAVED");
+
                 alert.show();
-                PreparedStatement prepStatUpdate = connect.getPrepStat("UPDATE movies SET movieRating = (SELECT AVG(rate) FROM ratings WHERE movieId = '" + movieId + "') WHERE movieId = '" + movieId + "';");
+
+                PreparedStatement prepStatUpdate = connect.getPrepStat("UPDATE movies SET movieRating = (SELECT AVG(rate) " +
+                        "FROM ratings WHERE movieId = '" + movieId + "') WHERE movieId = '" + movieId + "';");
                 prepStatUpdate.executeUpdate();
 
                 loadFirst();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
     }
+
 
     public void backButton() {
         try {
@@ -97,6 +111,7 @@ public class RatingController {
         }
     }
 
+
     public void showTable() {
         try {
             PreparedStatement prepStat = connect.getPrepStat("SELECT * FROM ratings WHERE movieId = '" + movieId + "';");
@@ -110,22 +125,25 @@ public class RatingController {
         }
     }
 
+
     public void loadFirst() {
-        System.out.println(movieId);
-        System.out.println(username);
         ratingTable.getItems().clear();
         ratingTable.getColumns().clear();
+
         showTable();
 
         try {
             PreparedStatement prepStatCheck = connect.getPrepStat("SELECT * FROM ratings WHERE username = '" + username + "' AND movieId = " + movieId + ";");
             ResultSet rsc = prepStatCheck.executeQuery();
+
             PreparedStatement prepStat = connect.getPrepStat("SELECT moviename from movies where movieId = " + movieId + ";");
             ResultSet rs = prepStat.executeQuery();
+
             if (rsc.next()) {
                 reviewArea.setText(rsc.getString("description"));
                 rateField.setText(String.valueOf(rsc.getInt("rate")));
             }
+
             if (rs.next()) {
                 TableColumn userCol = new TableColumn(rs.getString("moviename"));
                 userCol.setMinWidth(150);
